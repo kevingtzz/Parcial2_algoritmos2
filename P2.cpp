@@ -1,3 +1,4 @@
+/* codigo tomado de https://github.com/ajahuang/UVa/blob/master/UVa%2010154%20-%20Weights%20and%20Measures.cpp */
 #include <iostream>
 #include <vector>
 #include <cstring>
