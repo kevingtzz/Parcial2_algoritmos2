@@ -1,4 +1,3 @@
-/* codigo tomado de https://github.com/ajahuang/UVa/blob/master/UVa%2010154%20-%20Weights%20and%20Measures.cpp */
 #include <iostream>
 #include <vector>
 #include <cstring>
@@ -6,17 +5,17 @@
 #include <algorithm>
 using namespace std;
 
-struct Turtle
+struct Tortuga
 {
-    int w, s;
+    int Peso, fueza;
 };
 
-bool comp(const Turtle &t1, const Turtle &t2)
+bool comp(const Tortuga &t1, const Tortuga &t2)
 {
-   return t1.s < t2.s;
+   return t1.fueza < t2.fueza;
 }
 
-vector<Turtle> T;
+vector<Tortuga> T;
 int dp[5607];
 
 void solve()
@@ -26,27 +25,24 @@ void solve()
     fill(dp, dp + 5607, numeric_limits<int>::max());
     dp[0] = 0;
     
-    int maxNTurtles = 0;
+    int maxTortugas = 0;
 
     for (int i = 0; i < T.size(); ++i)
-        for (int j = maxNTurtles; j >= 0; --j)
-            // Try to put turtle i below the current stack of j turtles.
-            // 1.Turtle i can carry the stack plus itself.
-            // 2.They produce a smaller weight for the current stack of j+1 turtles.
-            if (T[i].s >= dp[j] + T[i].w
-                && T[i].w + dp[j] < dp[j + 1])
+        for (int j = maxTortugas; j >= 0; --j)
+            if (T[i].fueza >= dp[j] + T[i].Peso
+                && T[i].Peso + dp[j] < dp[j + 1])
             {
-                dp[j + 1] = dp[j] + T[i].w;
-                maxNTurtles = max(maxNTurtles, j + 1);
+                dp[j + 1] = dp[j] + T[i].Peso;
+                maxTortugas = max(maxTortugas, j + 1);
             }
     
-    cout << maxNTurtles << endl;
+    cout << maxTortugas << endl;
 }
 
 int main()
 {
-    Turtle t;
-    while (cin >> t.w >> t.s)
+    Tortuga t;
+    while (cin >> t.Peso >> t.fueza)
         T.push_back(t);
 
     solve();
