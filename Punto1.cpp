@@ -14,7 +14,7 @@ class Elephant{
     int get_Weight();
     int get_Smart();
 
-    bool operator < (Elephant X) const{ //Se sobrecarga el operador '<' para evaluar los atributos "Weight" y "Smart" de cada elefante.
+    bool operator < (Elephant X) const{
       if(Weight != X.Weight) return Weight < X.Weight;
       return Smart > X.Smart;
     }
@@ -43,13 +43,13 @@ int Elephant::get_Smart() {
 
 int main(){
   int n = 0, Weight, Smart;
-  Elephant elephants[1000]; //Se inicializa un array de estructuras de elefantes con maximo 1000 elefantes
+  Elephant elephants[1000];
     
-  while(scanf("%d %d", &Weight, &Smart) == 2) { //Mientras hayan dos datos de entrada se asignaran a una de las estructuras del arreglo. 
+  while(scanf("%d %d", &Weight, &Smart) == 2) { 
     elephants[n] = Elephant(++n, Weight, Smart);
   }
 
-  std::sort(elephants, elephants+n);//Teniendo en cuenta la sobrecarga efectuada en el operador  '<'  se organiza el arreglo con un sort
+  std::sort(elephants, elephants+n);
     
   int dp[n], next[n], ans = 0, start;
     
